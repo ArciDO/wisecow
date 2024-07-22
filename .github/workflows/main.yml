@@ -18,18 +18,18 @@ jobs:
           docker build -t arcido/wisecow:latest .
           docker push arcido/wisecow:latest
  
-  # # Optional: Deploy to Kubernetes (Challenge Goal)
-  # deploy-to-kubernetes:  # Uncomment this section and configure for deployment
-  #   runs-on: ubuntu-latest
-  #   needs: build-and-push  # This job depends on the successful completion of build-and-push
-  #   steps:
-  #     - uses: actions/checkout@v3
+  # Optional: Deploy to Kubernetes (Challenge Goal)
+  deploy-to-kubernetes:  # Uncomment this section and configure for deployment
+    runs-on: ubuntu-latest
+    needs: build-and-push  # This job depends on the successful completion of build-and-push
+    steps:
+      - uses: actions/checkout@v3
  
-  #     - name: Setup Minikube
-  #       uses: medyagh/setup-minikube@latest
-  #       with:
-  #         minikube version: v1.29.2  # Replace with desired version
-  #         kubernetes version: v1.25.5  # Replace with desired version
+      - name: Setup Minikube
+        uses: medyagh/setup-minikube@latest
+        with:
+          minikube version: v1.29.2  # Replace with desired version
+          kubernetes version: v1.25.5  # Replace with desired version
  
-  #     - name: Deploy the application (replace with your deployment manifest)
-  #       run: kubectl apply -f deployment.yaml -f service.yaml -f ingress.yaml
+      - name: Deploy the application (replace with your deployment manifest)
+        run: kubectl apply -f deployment.yaml -f service.yaml -f ingress.yaml
